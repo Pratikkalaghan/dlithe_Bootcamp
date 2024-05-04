@@ -1,104 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Validation</title>
-  </head>
-  <body>
-    <h1>Registration form</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <style>
+    
+ 
+    
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh;
+  background: url('bgimg.webp') no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+    
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      max-width: 100%;
+    }
+
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .error {
+      color: #ff3333;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      background-color: #47b1ea;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #54da52;
+    }
+  </style>
+</head>
+<body>
+ 
+  <div class="form-container">
+    <h1>Student Registration Form</h1>
     <form id="registrationForm" onsubmit="validateForm(event)">
       <div>
         <label for="username">Username</label>
-        <input type="text" name="username" id="username" />
-        <span id="usernameError" class="error"> </span>
-        <br /><br />
+        <input type="text" name="username" id="username" required>
+        <span id="usernameError" class="error"></span>
       </div>
       <div>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" />
-        <span id="emailError" class="error"> </span>
-        <br /><br />
+        <input type="email" name="email" id="email" required>
+        <span id="emailError" class="error"></span>
       </div>
       <div>
         <label for="rollNumber">Roll number</label>
-        <input type="text" name="rollNumber" id="rollNumber" />
-        <span id="RError" class="error"> </span>
-        <br /><br />
+        <input type="text" name="rollNumber" id="rollNumber" required>
+        <span id="RError" class="error"></span>
       </div>
       <div>
         <label for="college">College</label>
-        <input type="text" name="college" id="college" />
-        <span id="CError" class="error"> </span>
-        <br /><br />
+        <input type="text" name="college" id="college" required>
+        <span id="CError" class="error"></span>
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" />
-        <span id="passwordError" class="error"> </span>
-        <br /><br />
+        <input type="password" name="password" id="password" required>
+        <span id="passwordError" class="error"></span>
       </div>
       <button type="submit">Register</button>
     </form>
+  </div>
 
-    <script>
-      function validateForm(event) {
-        event.preventDefault();
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
 
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
-        const rollNumber = document.getElementById("rollNumber").value;
-        const college = document.getElementById("college").value;
-        const password = document.getElementById("password").value;
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const rollNumber = document.getElementById("rollNumber").value;
+      const college = document.getElementById("college").value;
+      const password = document.getElementById("password").value;
 
-        // Reset previous error messages
-        document.getElementById("usernameError").textContent = "";
-        document.getElementById("emailError").textContent = "";
-        document.getElementById("RError").textContent = "";
-        document.getElementById("CError").textContent = "";
-        document.getElementById("passwordError").textContent = "";
+      // error messages
+      document.getElementById("usernameError").textContent = "";
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("RError").textContent = "";
+      document.getElementById("CError").textContent = "";
+      document.getElementById("passwordError").textContent = "";
 
-        let hasError = false;
+      let hasError = false;
 
-        if (!username) {
-          document.getElementById("usernameError").textContent =
-            "Username is required";
-          hasError = true;
-          return; // Stop validation after the first empty field
-        }
-
-        if (!email) {
-          document.getElementById("emailError").textContent =
-            "Email is required";
-          hasError = true;
-          return; // Stop validation after the first empty field
-        }
-
-        if (!rollNumber) {
-          document.getElementById("RError").textContent =
-            "Roll number is required";
-          hasError = true;
-          return; // Stop validation after the first empty field
-        }
-
-        if (!college) {
-          document.getElementById("CError").textContent = "College Name is required";
-          hasError = true;
-          return; // Stop validation after the first empty field
-        }
-
-        if (!password) {
-          document.getElementById("passwordError").textContent =
-            "Password is required";
-          hasError = true;
-          return; // Stop validation after the first empty field
-        }
-
-        if (!hasError) {
-          console.log("Form submitted successfully");
-          // Here you can submit the form or perform any other action
-        }
+      if (!username) {
+        document.getElementById("usernameError").textContent = "Username is required";
+        hasError = true;
       }
-    </script>
-  </body>
+
+      if (!email) {
+        document.getElementById("emailError").textContent = "Email is required";
+        hasError = true;
+      }
+
+      if (!rollNumber) {
+        document.getElementById("RError").textContent = "Roll number is required";
+        hasError = true;
+      }
+
+      if (!college) {
+        document.getElementById("CError").textContent = "College Name is required";
+        hasError = true;
+      }
+
+      if (!password) {
+        document.getElementById("passwordError").textContent = "Password is required";
+        hasError = true;
+      }
+
+      if (!hasError) {
+        console.log("Form submitted successfully");
+        
+      }
+    }
+  </script>
+</body>
 </html>
